@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dino Game</title>
+  <title>ABHI Run</title>
   <style>
     body {
       background: #f7f7f7;
@@ -41,8 +41,8 @@ const groundY = 200;
 let dayTimer = 0;
 const dayLength = 2000;
 
-// Dino
-const dino = {
+// abhi
+const abhi = {
   x: 60,
   y: groundY - 40,
   width: 44,
@@ -58,9 +58,9 @@ let stars = [];
 
 // Reset
 function resetGame() {
-  dino.y = groundY - dino.height;
-  dino.velocityY = 0;
-  dino.jumping = false;
+  abhi.y = groundY - abhi.height;
+  abhi.velocityY = 0;
+  abhi.jumping = false;
   obstacles = [];
   clouds = [];
   stars = [];
@@ -72,9 +72,9 @@ function resetGame() {
 
 // ✅ UNIFIED JUMP HANDLER (Keyboard + Touch)
 function handleJump() {
-  if (!gameOver && !dino.jumping) {
-    dino.velocityY = jumpPower;
-    dino.jumping = true;
+  if (!gameOver && !abhi.jumping) {
+    abhi.velocityY = jumpPower;
+    abhi.jumping = true;
   }
   if (gameOver) {
     resetGame();
@@ -129,8 +129,8 @@ function drawStars() {
   });
 }
 
-// Dino
-function drawDino(ctx, x, y, frame) {
+// abhi
+function drawAbhi(ctx, x, y, frame) {
   ctx.save();
   ctx.translate(x, y);
 
@@ -190,7 +190,7 @@ function drawCloud(ctx, x, y) {
 
 // Draw
 function draw() {
-  drawBackground();
+  ctx.font = "18px monospace"; ctx.fillStyle = "#444"; ctx.fillText("🏃 ABHI RUN - Escape the Deadlines!",20,25);
 
   ctx.strokeStyle = "#555";
   ctx.beginPath();
@@ -205,22 +205,23 @@ function draw() {
     else drawCactus(ctx, o.x, groundY, o.h);
   });
 
-  drawDino(ctx, dino.x, dino.y, Math.floor(frame / 6));
+  drawAbhi(ctx, abhi.x, abhi.y, Math.floor(frame / 6));
 
   ctx.font = "20px monospace";
   ctx.fillStyle = "#444";
   ctx.fillText(
-    `HI ${String(highScore).padStart(5,"0")}   ${String(score).padStart(5,"0")}`,
-    canvas.width - 260, 40
-  );
+`BEST ${String(highScore).padStart(5,"0")}   SCORE ${String(score).padStart(5,"0")}`,
+canvas.width-330,
+40
+);
 
   if (gameOver) {
     ctx.font = "36px monospace";
     ctx.fillStyle = "#d90429";
-    ctx.fillText("GAME OVER", canvas.width / 2 - 120, 110);
+    ctx.fillText("ABHI GOT CAUGHT!", canvas.width / 2 - 165, 110);
     ctx.font = "22px monospace";
     ctx.fillStyle = "#333";
-    ctx.fillText("Tap / Space to Restart", canvas.width / 2 - 135, 145);
+    ctx.fillText("Tap / Press Space to Make Abhi Run Again!", canvas.width / 2 - 215, 145);
   }
 }
 
@@ -231,12 +232,12 @@ function update() {
   frame++;
   if (frame % 120 === 0) gameSpeed += 0.25;
 
-  dino.y += dino.velocityY;
-  dino.velocityY += gravity;
-  if (dino.y > groundY - dino.height) {
-    dino.y = groundY - dino.height;
-    dino.velocityY = 0;
-    dino.jumping = false;
+  abhi.y += abhi.velocityY;
+  abhi.velocityY += gravity;
+  if (abhi.y > groundY - abhi.height) {
+    abhi.y = groundY - abhi.height;
+    abhi.velocityY = 0;
+    abhi.jumping = false;
   }
 
   if (frame % 90 === 0) {
@@ -252,9 +253,9 @@ function update() {
   obstacles.forEach(o => {
     o.x -= gameSpeed;
     if (
-      o.x < dino.x + dino.width &&
-      o.x + o.w > dino.x &&
-      groundY - o.h < dino.y + dino.height
+      o.x < abhi.x + abhi.width &&
+      o.x + o.w > abhi.x &&
+      groundY - o.h < abhi.y + abhi.height
     ) {
       gameOver = true;
       highScore = Math.max(score, highScore);
