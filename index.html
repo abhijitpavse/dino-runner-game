@@ -44,9 +44,9 @@ const dayLength = 2000;
 // abhi
 const abhi = {
   x: 60,
-  y: groundY - 50,
-  width: 38,
-  height: 50,
+  y: groundY - 40,
+  width: 44,
+  height: 40,
   velocityY: 0,
   jumping: false
 };
@@ -131,202 +131,51 @@ function drawStars() {
 
 // abhi
 function drawAbhi(ctx, x, y, frame) {
-    ctx.save();
-    ctx.translate(x, y);
+  ctx.save();
+  ctx.translate(x, y);
 
-    // Head
-    ctx.fillStyle = "#f1c27d";
-    ctx.beginPath();
-    ctx.arc(20, 8, 7, 0, Math.PI * 2);
-    ctx.fill();
+  ctx.fillStyle = "#535353";
+  ctx.fillRect(6, 6, 28, 18);
+  ctx.fillRect(25, -2, 16, 16);
+  ctx.fillRect(0, 16, 8, 6);
 
-    // Hair
-    ctx.fillStyle = "#111";
-    ctx.beginPath();
-    ctx.arc(20, 5, 7, Math.PI, 0);
-    ctx.fill();
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(38, 2, 3, 3);
+  ctx.fillStyle = "#333";
+  ctx.fillRect(39, 3, 1, 1);
 
-    // Neck
-    ctx.fillStyle = "#f1c27d";
-    ctx.fillRect(18, 14, 4, 4);
+  ctx.fillStyle = "#444";
+  ctx.fillRect(14, 18, 8, 3);
 
-    // Hoodie
-    ctx.fillStyle = "#2563eb";
-    ctx.fillRect(12,18,16,18);
+  ctx.fillStyle = "#535353";
+  if (frame % 2 === 0) {
+    ctx.fillRect(12, 26, 6, 14);
+    ctx.fillRect(24, 28, 6, 12);
+  } else {
+    ctx.fillRect(12, 28, 6, 12);
+    ctx.fillRect(24, 26, 6, 14);
+  }
 
-    // Hood
-    ctx.beginPath();
-    ctx.arc(20,20,10,Math.PI,0);
-    ctx.fill();
-
-    // Laptop Bag
-    ctx.fillStyle="#444";
-    ctx.fillRect(28,22,7,10);
-
-    // Arms
-    ctx.strokeStyle="#f1c27d";
-    ctx.lineWidth=3;
-
-    ctx.beginPath();
-    ctx.moveTo(12,23);
-    ctx.lineTo(5,28);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(28,23);
-    ctx.lineTo(35,28);
-    ctx.stroke();
-
-    // Legs Animation
-    ctx.strokeStyle="#222";
-    ctx.lineWidth=4;
-
-    if(frame%2==0){
-
-        ctx.beginPath();
-        ctx.moveTo(16,36);
-        ctx.lineTo(10,48);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(24,36);
-        ctx.lineTo(30,48);
-        ctx.stroke();
-
-    }else{
-
-        ctx.beginPath();
-        ctx.moveTo(16,36);
-        ctx.lineTo(20,48);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(24,36);
-        ctx.lineTo(18,48);
-        ctx.stroke();
-
-    }
-
-    // Shoes
-    ctx.fillStyle="#000";
-    ctx.fillRect(8,47,6,3);
-    ctx.fillRect(27,47,6,3);
-
-    ctx.restore();
+  ctx.restore();
 }
+
 // bug
-function drawbug(ctx,x,y,h){
-
-    ctx.save();
-
-    ctx.translate(x,y-h);
-
-    // Body
-    ctx.fillStyle="#111";
-
-    ctx.beginPath();
-    ctx.ellipse(10,20,9,12,0,0,Math.PI*2);
-    ctx.fill();
-
-    // Wings
-
-    ctx.fillStyle="#555";
-
-    ctx.beginPath();
-    ctx.ellipse(5,18,5,7,-0.5,0,Math.PI*2);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.ellipse(15,18,5,7,0.5,0,Math.PI*2);
-    ctx.fill();
-
-    // Eyes
-
-    ctx.fillStyle="red";
-
-    ctx.beginPath();
-    ctx.arc(7,18,2,0,Math.PI*2);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.arc(13,18,2,0,Math.PI*2);
-    ctx.fill();
-
-    // Legs
-
-    ctx.strokeStyle="#111";
-
-    for(let i=0;i<3;i++){
-
-        ctx.beginPath();
-        ctx.moveTo(2,18+i*4);
-        ctx.lineTo(-5,15+i*5);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(18,18+i*4);
-        ctx.lineTo(25,15+i*5);
-        ctx.stroke();
-
-    }
-
-    ctx.restore();
-
+function drawbug(ctx, x, y, h) {
+  ctx.fillStyle = "#397d02";
+  ctx.fillRect(x, y - h, 12, h);
+  ctx.fillRect(x - 5, y - h + 10, 5, 20);
+  ctx.fillRect(x + 12, y - h + 15, 4, 20);
 }
 
 // deadline
-function drawdeadline(ctx,x,y,h){
+function drawdeadline(ctx, x, y, h) {
+  ctx.fillStyle = "#8b5a2b";
+  ctx.fillRect(x + 6, y - h, 10, h);
 
-    ctx.save();
-
-    ctx.translate(x,y-h);
-
-    // Calendar
-
-    ctx.fillStyle="#fff";
-
-    ctx.fillRect(0,0,30,40);
-
-    ctx.strokeStyle="#222";
-
-    ctx.strokeRect(0,0,30,40);
-
-    // Top
-
-    ctx.fillStyle="#d90429";
-
-    ctx.fillRect(0,0,30,8);
-
-    // Rings
-
-    ctx.fillStyle="#222";
-
-    ctx.fillRect(5,-2,3,6);
-
-    ctx.fillRect(22,-2,3,6);
-
-    // DEAD
-
-    ctx.fillStyle="#000";
-
-    ctx.font="bold 8px Arial";
-
-    ctx.fillText("DEAD",2,20);
-
-    ctx.fillText("LINE",4,31);
-
-    // Warning
-
-    ctx.fillStyle="red";
-
-    ctx.beginPath();
-
-    ctx.arc(15,36,2,0,Math.PI*2);
-
-    ctx.fill();
-
-    ctx.restore();
-
+  ctx.fillStyle = "#2d6a4f";
+  ctx.beginPath();
+  ctx.arc(x + 11, y - h, 20, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 // Cloud
@@ -404,8 +253,8 @@ function update() {
     const isdeadline = Math.random() < 0.4;
     obstacles.push({
       x: canvas.width + 20,
-      h: isdeadline ? 42 : 28,
-      w: isdeadline ? 30 : 20,
+      h: isdeadline ? 50 : 35 + Math.random() * 25,
+      w: isdeadline ? 24 : 12,
       type: isdeadline ? "deadline" : "bug"
     });
   }
@@ -415,7 +264,7 @@ function update() {
     if (
       o.x < abhi.x + abhi.width &&
       o.x + o.w > abhi.x &&
-      groundY-o.h+5<abhi.y+abhi.height
+      groundY - o.h < abhi.y + abhi.height
     ) {
       gameOver = true;
       highScore = Math.max(score, highScore);
